@@ -2,11 +2,11 @@ import React, { useState, CSSProperties } from "react";
 import axios from "axios";
 import "./Weather.css";
 import PuffLoader from "react-spinners/PuffLoader";
-import FormattedDate from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-
+  const [city, setCity] = useState(props.city);
   function handleResponse(response) {
     setWeatherData({
       ready: true,
@@ -20,53 +20,56 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
     });
   }
+
+  function search() {
+    const apiKey = "3a0dab1bctcd005f34e0df7852b0aob3";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleSearchResult(event) {
+    setCity(event.target.value);
+  }
+
   if (weatherData.ready) {
     return (
-      <div className="row">
-        <div className="col p-1 m-1 bg-primary bg-gradient bg-opacity-25 rounded-2">
-          <h1>{weatherData.city}</h1>
-          <ul>
-            <li className="text-capitalize">{weatherData.description}</li>
-            <li>
-              Last updated: <FormattedDate date={weatherData.lastUpdated} />{" "}
-            </li>
-          </ul>
-        </div>
-        <div className="col m-1 p-1 bg-primary bg-gradient bg-opacity-25 rounded-2 d-flex align-items-center justify-content-evenly">
-          <div className="row">
-            <div className="col">
-              <img
-                alt={weatherData.description}
-                src={weatherData.imgSource}
-                className="current-weather-icon"
-              />
+      <div>
+        <div className="row">
+          <form
+            onSubmit={handleSubmit}
+            className="m-1 p-2 bg-primary bg-gradient bg-opacity-25 rounded-2 w-100"
+          >
+            <div className="row">
+              <div className="col-9">
+                <input
+                  type="search"
+                  placeholder="Choose your city"
+                  autoComplete="off"
+                  autoFocus="on"
+                  className="form-control"
+                  onChange={handleSearchResult}
+                />
+              </div>
+              <div className="col-2">
+                <input
+                  type="submit"
+                  value="Search"
+                  className="btn btn-primary"
+                />
+              </div>
             </div>
-            <div className="col">
-              <ul className="mb-0 px-0">
-                <li>
-                  <i class="fa-solid fa-temperature-full"></i>{" "}
-                  {Math.round(weatherData.current)}° C |°F
-                </li>
-                <li>
-                  <i class="fa-solid fa-thermometer"></i>
-                  {Math.round(weatherData.feelsLike)}° C
-                </li>
-                <li>
-                  <i class="fa-solid fa-droplet"></i> {weatherData.humidity} %
-                </li>
-                <li>
-                  <i class="fa-solid fa-wind"></i> {weatherData.wind}km/h
-                </li>
-              </ul>
-            </div>
-          </div>
+          </form>
         </div>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    const apiKey = "3a0dab1bctcd005f34e0df7852b0aob3";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.city}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
 
     return (
       <PuffLoader

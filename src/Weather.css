@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Laila:wght@300&display=swap");
+
 .loading-icon {
   margin: 0 auto;
+}
+.weather ul {
+  padding-left: 5%;
+}
+
+.btn {
+  background-color: #3f4b76 !important;
+  border-color: #3f4b76 !important;
 }

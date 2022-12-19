@@ -2,16 +2,12 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import "./index.css";
-import Search from "./Search";
 import Weather from "./Weather";
 
 function App() {
   return (
     <div className="App">
       <div className="container shadow-sm p-3 px-5 mt-5 bg-body rounded-2 bg-opacity-10">
-        <div className="row">
-          <Search />
-        </div>
         <Weather city="Kyiv" />
       </div>
       <footer>
