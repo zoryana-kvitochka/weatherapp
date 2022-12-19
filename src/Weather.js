@@ -2,6 +2,7 @@ import React, { useState, CSSProperties } from "react";
 import axios from "axios";
 import "./Weather.css";
 import PuffLoader from "react-spinners/PuffLoader";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -10,7 +11,7 @@ export default function Weather(props) {
     setWeatherData({
       ready: true,
       city: response.data.city,
-      lastUpdated: response.data.time,
+      lastUpdated: new Date(response.data.time * 1000),
       description: response.data.condition.description,
       imgSource: response.data.condition.icon_url,
       current: response.data.temperature.current,
@@ -26,7 +27,9 @@ export default function Weather(props) {
           <h1>{weatherData.city}</h1>
           <ul>
             <li className="text-capitalize">{weatherData.description}</li>
-            <li>Last updated: Mon, Dec 19, 15:00</li>
+            <li>
+              Last updated: <FormattedDate date={weatherData.lastUpdated} />{" "}
+            </li>
           </ul>
         </div>
         <div className="col m-1 p-1 bg-primary bg-gradient bg-opacity-25 rounded-2 d-flex align-items-center justify-content-evenly">
