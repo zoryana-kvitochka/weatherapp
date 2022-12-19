@@ -16,7 +16,7 @@ function App() {
       </div>
       <footer>
         <a
-          href="https://github.com/zoryana-kvitochka/react-weather-app"
+          href="https://github.com/zoryana-kvitochka/weatherapp"
           target="_blank"
           className="footer-link"
           rel="noopener noreferrer"
