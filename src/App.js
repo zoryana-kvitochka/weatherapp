@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
+import "./index.css";
+import Search from "./Search";
+import Weather from "./Weather";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container shadow-sm p-3 px-5 mt-5 bg-body rounded-2 bg-opacity-10">
+        <div className="row">
+          <Search />
+        </div>
+        <Weather city="Kyiv" />
+      </div>
+      <footer>
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/zoryana-kvitochka/react-weather-app"
           target="_blank"
+          className="footer-link"
           rel="noopener noreferrer"
         >
-          Learn React
-        </a>
-      </header>
+          Open-source code
+        </a>{" "}
+        by Stanislava Dudchenko
+      </footer>
     </div>
   );
 }
