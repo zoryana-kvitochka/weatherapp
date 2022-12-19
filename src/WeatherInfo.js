@@ -1,4 +1,5 @@
 import React from "react";
+import ForecastCalc from "./ForecastCalc";
 import FormattedDate from "./FormattedDate";
 
 export default function WeatherInfo(props) {
@@ -23,22 +24,12 @@ export default function WeatherInfo(props) {
             />
           </div>
           <div className="col">
-            <ul className="mb-0 px-0">
-              <li>
-                <i class="fa-solid fa-temperature-full"></i>{" "}
-                {Math.round(props.data.current)}° C |°F
-              </li>
-              <li>
-                <i class="fa-solid fa-thermometer"></i>{" "}
-                {Math.round(props.data.feelsLike)}° C
-              </li>
-              <li>
-                <i class="fa-solid fa-droplet"></i> {props.data.humidity} %
-              </li>
-              <li>
-                <i class="fa-solid fa-wind"></i> {props.data.wind}km/h
-              </li>
-            </ul>
+            <ForecastCalc
+              current={Math.round(props.data.current)}
+              feelsLike={Math.round(props.data.feelsLike)}
+              humidity={props.data.humidity}
+              wind={props.data.wind}
+            />
           </div>
         </div>
       </div>
