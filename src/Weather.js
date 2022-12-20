@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Weather.css";
 import PuffLoader from "react-spinners/PuffLoader";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast.js";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -66,6 +67,7 @@ export default function Weather(props) {
           </form>
         </div>
         <WeatherInfo data={weatherData} />
+        <WeatherForecast />
       </div>
     );
   } else {

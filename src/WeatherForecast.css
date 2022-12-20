@@ -1,0 +1,12 @@
+.WeatherForecast {
+  text-align: center;
+}
+.WeatherForecast-icon img {
+  max-height: 50px;
+}
+.WeatherForecast-day {
+  font-size: 16px;
+}
+.WeatherForecast-temp {
+  font-size: 12px;
+}
