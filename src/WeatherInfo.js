@@ -1,5 +1,5 @@
 import React from "react";
-import ForecastCalc from "./ForecastCalc";
+import WeatherInfoCalc from "./WeatherInfoCalc";
 import FormattedDate from "./FormattedDate";
 
 export default function WeatherInfo(props) {
@@ -24,7 +24,7 @@ export default function WeatherInfo(props) {
             />
           </div>
           <div className="col">
-            <ForecastCalc
+            <WeatherInfoCalc
               current={Math.round(props.data.current)}
               feelsLike={Math.round(props.data.feelsLike)}
               humidity={props.data.humidity}

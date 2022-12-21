@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ForecastCalc(props) {
+export default function WeatherInfoCalc(props) {
   const [unit, setUnit] = useState("metric");
   let currentTempImperial = Math.round((props.current * 9) / 5 + 32);
   let feelsLikeImperial = Math.round((props.feelsLike * 9) / 5 + 32);
@@ -20,20 +20,20 @@ export default function ForecastCalc(props) {
     return (
       <ul className="mb-0 px-0">
         <li>
-          <i class="fa-solid fa-temperature-full"></i> {props.current} °C |{" "}
+          <i className="fa-solid fa-temperature-full"></i> {props.current} °C |{" "}
           <a href="/" onClick={cToF}>
             {" "}
             °F{" "}
           </a>
         </li>
         <li>
-          <i class="fa-solid fa-thermometer"></i> {props.feelsLike} °C
+          <i className="fa-solid fa-thermometer"></i> {props.feelsLike} °C
         </li>
         <li>
-          <i class="fa-solid fa-droplet"></i> {props.humidity} %
+          <i className="fa-solid fa-droplet"></i> {props.humidity} %
         </li>
         <li>
-          <i class="fa-solid fa-wind"></i> {props.wind} km/h
+          <i className="fa-solid fa-wind"></i> {props.wind} km/h
         </li>
       </ul>
     );
@@ -41,20 +41,20 @@ export default function ForecastCalc(props) {
     return (
       <ul className="mb-0 px-0">
         <li>
-          <i class="fa-solid fa-temperature-full"></i> {currentTempImperial}{" "}
+          <i className="fa-solid fa-temperature-full"></i> {currentTempImperial}{" "}
           <a href="/" onClick={fToC}>
             °C
           </a>{" "}
           | °F{" "}
         </li>
         <li>
-          <i class="fa-solid fa-thermometer"></i> {feelsLikeImperial} °F
+          <i className="fa-solid fa-thermometer"></i> {feelsLikeImperial} °F
         </li>
         <li>
-          <i class="fa-solid fa-droplet"></i> {props.humidity} %
+          <i className="fa-solid fa-droplet"></i> {props.humidity} %
         </li>
         <li>
-          <i class="fa-solid fa-wind"></i> {windImperial} m/h
+          <i className="fa-solid fa-wind"></i> {windImperial} m/h
         </li>
       </ul>
     );
