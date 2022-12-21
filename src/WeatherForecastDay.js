@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WeatherForecastDay(props) {
   function day() {
-    let date = new Date(props.data.day * 1000);
+    let date = new Date(props.data.time * 1000);
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let day = days[date.getDay()];
 
@@ -10,16 +10,19 @@ export default function WeatherForecastDay(props) {
   }
 
   return (
-    <div className="col">
+    <div>
       <div className="WeatherForecast-day">{day()}</div>
       <div className="WeatherForecast-icon">
-        <img src={props.data.iconSrc} alt={props.data.iconAlt} />
+        <img
+          src={props.data.condition.icon_url}
+          alt={props.data.condition.description}
+        />
       </div>
       <div className="WeatherForecast-temp">
         <i className="fa-solid fa-temperature-arrow-up"> </i>{" "}
-        {Math.round(props.data.maxTemp)} °C <br />
+        {Math.round(props.data.temperature.maximum)} °C <br />
         <i className="fa-solid fa-temperature-arrow-down"></i>{" "}
-        {Math.round(props.data.minTemp)} °C
+        {Math.round(props.data.temperature.minimum)} °C
       </div>
     </div>
   );

@@ -1,29 +1,36 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./WeatherForecast.css";
 import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props) {
-  const [forecastData, setForecastData] = useState({ ready: false });
+  const [forecastData, setForecastData] = useState(null);
+  const [ready, setReady] = useState(false);
 
-  if (forecastData.ready) {
+  useEffect(() => {
+    setReady(false);
+  }, [props.city]);
+
+  if (ready) {
     return (
-      <div className="WeatherForecast">
-        <div className="row">
-          <WeatherForecastDay data={forecastData} />
-        </div>
+      <div className="WeatherForecast row m-1 p-2 bg-primary bg-gradient bg-opacity-25 rounded-2">
+        {forecastData.map(function(dailyForecast, index) {
+          if (index < 5) {
+            return (
+              <div className="col" key={index}>
+                <WeatherForecastDay data={dailyForecast} />
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
     );
   } else {
     function handleResponse(response) {
-      setForecastData({
-        ready: true,
-        day: response.data.daily[0].time,
-        iconAlt: response.data.daily[0].condition.icon,
-        iconSrc: response.data.daily[0].condition.icon_url,
-        maxTemp: response.data.daily[0].temperature.maximum,
-        minTemp: response.data.daily[0].temperature.minimum,
-      });
+      setForecastData(response.data.daily);
+      setReady(true);
     }
 
     let apiKey = "3a0dab1bctcd005f34e0df7852b0aob3";
